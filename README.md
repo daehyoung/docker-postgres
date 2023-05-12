@@ -9,3 +9,9 @@ docker run  -d --name pms-postgres \
     -p  5432:5432 \
     postgres:15.2-alpine
     
+
+
+## Performance Tuning PostgreSQL Containers in a Docker Environment
+https://pankajconnect.medium.com/performance-tuning-postgresql-containers-in-a-docker-environment-89ca7090e072
+
+
