@@ -29,7 +29,7 @@ docker run -d --name timescaledb  \
 
 ### create database
 ```
-create database exmple;
+create database example;
 grant all privileges on database example to postgres;
 
 ```
