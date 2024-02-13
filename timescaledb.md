@@ -23,6 +23,7 @@ docker run -d --name timescaledb  \
   -p 5432:5432 \
   -v postgres_data:/var/lib/postgresql/data \
   -e POSTGRES_PASSWORD=postgres \
+  -e TZ=Asia/Seoul \
   timescale/timescaledb:latest-pg14
 
 ```
