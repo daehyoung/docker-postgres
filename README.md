@@ -1,9 +1,13 @@
 # docker-postgres
 
 ```
-docker volume create --name postgres_data --opt type=none --opt device=/home/hms/data/postgres_data --opt o=bind
-
+docker volume create --driver local \
+ --name postgres_data \
+ --opt type=none \
+ --opt device=/home/hms/data/postgres_data \
+ --opt o=bind,uid=1000
 ```
+    
 ```
 docker run  -d --name pms-postgres \
     -e  POSTGRES_USER=postgres \
@@ -16,6 +20,13 @@ docker run  -d --name pms-postgres \
 
 ```
 
+
+timescaledb
+
+```
+ docker run -d --name timescaledb -p 5432:5432 -v postgres_data:/home/postgres/pgdata/data -e POSTGRES_PASSWORD=password timescale/timescaledb:latest-pg14
+
+```
 
 ## Performance Tuning PostgreSQL Containers in a Docker Environment
 https://pankajconnect.medium.com/performance-tuning-postgresql-containers-in-a-docker-environment-89ca7090e072
