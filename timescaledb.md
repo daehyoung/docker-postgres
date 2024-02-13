@@ -121,24 +121,8 @@ FROM timescaledb_information.continuous_aggregates;
 
 ## query
 ```
-WITH per_hour AS (
-SELECT
-time,
-value
-FROM kwh_hour_by_hour
-WHERE "time" at time zone 'Asia/Seoul' > date_trunc('month', time) - interval '1 year'
-ORDER BY 1
-), hourly AS (
- SELECT
-      extract(HOUR FROM time) * interval '1 hour' as hour,
-      value
- FROM per_hour
-)
-SELECT
-    hour,
-    approx_percentile(0.50, percentile_agg(value)) as median,
-    max(value) as maximum
-FROM hourly
-GROUP BY 1
-ORDER BY 1;
+select * from kwh_hour_by_hour where time > '2023-05-29 00:00:00+09' 
+and time < ( TO_TIMESTAMP(  '2023-05-29 00:00:00' , 'YYYY-MM-DD HH24:MI:SS' ) + INTERVAL '1 DAY' ) limit 10;
+
+
 ```
