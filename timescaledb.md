@@ -15,6 +15,24 @@ docker volume create --driver local \
  --opt o=bind,uid=70
 ```
 
+docker-compose.yml
+```
+services:
+  db:
+    image: timescale/timescaledb:latest-pg14
+    environment:
+      TZ: Asia/Seoul
+      POSTGRES_DB: timescale
+      POSTGRES_USER: timescale
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+```
 
 
 ### run docker
