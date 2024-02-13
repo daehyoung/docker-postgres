@@ -53,6 +53,11 @@ sudo blkid
 ```
 
 
+```
+firewall-cmd --add-port=5432/tcp --zone=public --permanent 
+firewall-cmd --reload 
+```
+
 ## Performance Tuning PostgreSQL Containers in a Docker Environment
 https://pankajconnect.medium.com/performance-tuning-postgresql-containers-in-a-docker-environment-89ca7090e072
 
