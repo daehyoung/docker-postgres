@@ -1,3 +1,18 @@
+## install
+### create volume
+
+```
+docker volume create --driver local \
+ --name postgres_data \
+ --opt type=none \
+ --opt device=/home/hms/data/postgres_data \
+ --opt o=bind,uid=70
+```
+### run docker
+```
+
+```
+
 
 ## Create a standard PostgreSQL table 
 ```
