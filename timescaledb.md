@@ -56,6 +56,14 @@ grant all privileges on database example to postgres;
 ALTER DATABASE example SET timezone TO 'Asia/Seoul';
 ```
 
+```
+  SHOW data_directory;
+      data_directory      
+--------------------------
+ /var/lib/postgresql/data
+(1 row)
+
+```
 
 ## Create a standard PostgreSQL table 
 ```
