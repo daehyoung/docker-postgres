@@ -1,10 +1,10 @@
 # docker-postgres
 
-
+```
 docker volume create --name postgres_data --opt type=none --opt device=/home/hms/data/postgres_data --opt o=bind
 
-
-
+```
+```
 docker run  -d --name pms-postgres \
     -e  POSTGRES_USER=postgres \
     -e  POSTGRES_PASSWORD=postgres \
@@ -14,7 +14,7 @@ docker run  -d --name pms-postgres \
     postgres:15.2-alpine
     
 
-
+```
 
 
 ## Performance Tuning PostgreSQL Containers in a Docker Environment
