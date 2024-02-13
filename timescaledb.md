@@ -27,6 +27,12 @@ docker run -d --name timescaledb  \
 
 ```
 
+### create database
+```
+create database exmple;
+grant all privileges on database example to postgres;
+
+```
 
 ## Create a standard PostgreSQL table 
 ```
@@ -120,7 +126,7 @@ SELECT
 time,
 value
 FROM kwh_hour_by_hour
-WHERE "time" at time zone 'Europe/Berlin' > date_trunc('month', time) - interval '1 year'
+WHERE "time" at time zone 'Asia/Seoul' > date_trunc('month', time) - interval '1 year'
 ORDER BY 1
 ), hourly AS (
  SELECT
