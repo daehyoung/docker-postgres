@@ -33,6 +33,10 @@ create database example;
 grant all privileges on database example to postgres;
 
 ```
+```
+ALTER DATABASE example SET timezone TO 'Asia/Seoul';
+```
+
 
 ## Create a standard PostgreSQL table 
 ```
