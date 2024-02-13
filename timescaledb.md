@@ -121,8 +121,8 @@ FROM timescaledb_information.continuous_aggregates;
 
 ## query
 ```
-select * from kwh_hour_by_hour where time > '2023-05-29 00:00:00+09' 
-and time < ( TO_TIMESTAMP(  '2023-05-29 00:00:00' , 'YYYY-MM-DD HH24:MI:SS' ) + INTERVAL '1 DAY' ) limit 10;
+select * from kwh_hour_by_hour where time > TO_TIMESTAMP(  '2023-05-29 00:00:00' , 'YYYY-MM-DD HH24:MI:SS' ) AT TIME ZONE 'Asia/Seoul' 
+and time < ( TO_TIMESTAMP(  '2023-05-29 00:00:00' , 'YYYY-MM-DD HH24:MI:SS' ) AT TIME ZONE 'Asia/Seoul'  + INTERVAL '1 DAY' ) limit 10;
 
 
 ```
