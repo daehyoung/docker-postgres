@@ -159,9 +159,36 @@ and time < ( TO_TIMESTAMP(  '2023-05-29 00:00:00' , 'YYYY-MM-DD HH24:MI:SS' ) AT
 ```
 
 
+
+```
+SELECT to_char(time, 'YYYY-MM-DD') as bucket,
+       sum(value) as value
+FROM 
+(
+	SELECT
+   time ,  value
+ 	FROM kwh_hour_by_hour khbh 
+ 	ORDER BY 1
+ ) a
+ group by bucket
+ order by bucket desc;
+ ```
+```
+ 
+ select
+   time_bucket('1 day', time,'Asia/Seoul') AS bucket,  
+	sum(value) as kwh 
+FROM kwh_hour_by_hour khbh 
+GROUP BY bucket 
+order by bucket desc;
 ```
 
-SELECT to_char(day, 'YYYY-MM') as time,
+
+
+
+```
+
+SELECT to_char(day, 'YYYY-MM') as bucket,
        sum(value) as value
 FROM 
 (
@@ -171,22 +198,14 @@ FROM
  	WHERE "time" > now() - interval '1 year'
  	ORDER BY 1
  ) a
- group by time
- 
+ group by bucket
+ order by bucket desc;
+ ```
 ```
-
-```
-SELECT to_char(time, 'YYYY-MM-DD') as time,
-       sum(value) as value
-FROM 
-(
-	SELECT
-   time,  value
- 	FROM kwh_hour_by_hour khbh
- 	WHERE "time" >= to_timestamp('2023-05-01','YYYY-MM-DD')  
- 	ORDER BY 1
- ) a
- group by time
- ;
- 
+select
+   time_bucket('1 month', time,'Asia/Seoul') AS bucket,  
+	sum(value) as kwh 
+FROM kwh_day_by_day khbh 
+GROUP BY bucket 
+order by bucket desc;
 ```
