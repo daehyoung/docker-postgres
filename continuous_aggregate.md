@@ -201,3 +201,8 @@ SELECT hypertable_name, hypertable_size(format('%I.%I', hypertable_schema, hyper
   FROM timescaledb_information.hypertables;
 ```
 
+
+```
+SELECT hypertable_size('metrics_day_by_day');
+```
+
