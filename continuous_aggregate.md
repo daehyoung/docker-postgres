@@ -187,3 +187,11 @@ SELECT
  FROM hypertable_compression_stats('metrics');
 
 ```
+
+
+## hypertable info
+
+```
+SELECT hypertable_name, hypertable_size(format('%I.%I', hypertable_schema, hypertable_name)::regclass)
+  FROM timescaledb_information.hypertables;
+```
