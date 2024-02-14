@@ -28,7 +28,7 @@ SELECT add_continuous_aggregate_policy('metrics_min_by_min',
 ### query
 ```
 select
-	time_bucket('15 min') AS bucket, 
+	time_bucket('15 min',time) AS bucket, 
 	type_id,
 	sum(value) as value 
 FROM metrics_min_by_min m  
