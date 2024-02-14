@@ -194,8 +194,7 @@ FROM
 (
 	SELECT
    time as day,  value
- 	FROM kwh_day_by_day
- 	WHERE "time" > now() - interval '1 year'
+ 	FROM kwh_day_by_day 
  	ORDER BY 1
  ) a
  group by bucket
