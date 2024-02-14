@@ -1,4 +1,5 @@
 ## meterialized view with continuous aggregate
+
 ## 1 min by min
 ### meterialized view 
 ```
@@ -12,13 +13,15 @@ FROM metrics
 GROUP BY 1,2;
 ```
 
-### update view every hour
+### update view every minute
+
 ```
 SELECT add_continuous_aggregate_policy('metrics_min_by_min',
 	start_offset => NULL,
 	end_offset => INTERVAL '1 min',
 	schedule_interval => INTERVAL '1 min');
 ```
+
 ### query
 ```
 select
