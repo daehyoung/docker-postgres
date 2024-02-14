@@ -162,3 +162,28 @@ SELECT remove_continuous_aggregate_policy('metrics_min_by_min');
 SELECT remove_continuous_aggregate_policy('metrics_day_by_day');
 ```
 
+
+## compression
+
+```
+ALTER TABLE metrics 
+SET (
+    timescaledb.compress, 
+    timescaledb.compress_segmentby='type_id', 
+    timescaledb.compress_orderby='created DESC'
+);
+```
+
+
+```
+SELECT compress_chunk(c) from show_chunks('metrics') c;
+
+```
+
+```
+SELECT 
+    pg_size_pretty(before_compression_total_bytes) as before,
+    pg_size_pretty(after_compression_total_bytes) as after
+ FROM hypertable_compression_stats('metrics');
+
+```
