@@ -160,22 +160,23 @@ and time < ( TO_TIMESTAMP(  '2023-05-29 00:00:00' , 'YYYY-MM-DD HH24:MI:SS' ) AT
 
 
 ```
-SELECT to_char(time, 'YYYY-MM') as month,
+
+SELECT to_char(day, 'YYYY-MM') as time,
        sum(value) as value
 FROM 
 (
 	SELECT
-   time,  value
+   time as day,  value
  	FROM kwh_day_by_day
  	WHERE "time" > now() - interval '1 year'
  	ORDER BY 1
  ) a
- group by month
+ group by time
  
 ```
 
 ```
- SELECT to_char(time, 'YYYY-MM-DD') as day,
+SELECT to_char(time, 'YYYY-MM-DD') as time,
        sum(value) as value
 FROM 
 (
@@ -185,6 +186,7 @@ FROM
  	WHERE "time" >= to_timestamp('2023-05-01','YYYY-MM-DD')  
  	ORDER BY 1
  ) a
- group by day
+ group by time
  ;
+ 
 ```
