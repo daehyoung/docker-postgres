@@ -180,6 +180,11 @@ SELECT compress_chunk(c) from show_chunks('metrics') c;
 
 ```
 
+
+```
+SELECT hypertable_size('metrics'); 
+```
+
 ```
 SELECT 
     pg_size_pretty(before_compression_total_bytes) as before,
@@ -195,3 +200,4 @@ SELECT
 SELECT hypertable_name, hypertable_size(format('%I.%I', hypertable_schema, hypertable_name)::regclass)
   FROM timescaledb_information.hypertables;
 ```
+
