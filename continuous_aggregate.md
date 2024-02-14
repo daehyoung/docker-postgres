@@ -11,7 +11,7 @@ FROM metrics
 GROUP BY 1,2;
 ```
 
-### job
+### update view every hour
 ```
 SELECT add_continuous_aggregate_policy('kwh_day_by_day',
    start_offset => NULL,
