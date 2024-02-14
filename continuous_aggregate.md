@@ -1,5 +1,7 @@
 ## meterialized view with continuous aggregate
 
+
+
 ## 1 min by min
 ### meterialized view 
 ```
@@ -146,4 +148,17 @@ FROM
  order by bucket desc;
  ```
 
- 
+
+### remove_continuous_aggregate_policy 
+
+```
+SELECT remove_continuous_aggregate_policy('metrics_hour_by_hour');
+```
+
+```
+SELECT remove_continuous_aggregate_policy('metrics_min_by_min');
+```
+```
+SELECT remove_continuous_aggregate_policy('metrics_day_by_day');
+```
+
