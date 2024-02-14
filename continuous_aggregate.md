@@ -108,3 +108,42 @@ order by bucket , type_id desc;
 
 
 
+
+
+
+
+## query 
+
+
+```
+SELECT to_char(time, 'YYYY-MM-DD') as bucket,
+       sum(value) as value
+FROM 
+(
+	SELECT
+	time
+	,value
+	FROM metrics_hour_by_hour khbh 
+	ORDER BY 1
+ ) a
+ group by bucket
+ order by bucket desc;
+ ```
+```
+  
+
+SELECT to_char(day, 'YYYY-MM') as bucket,
+       sum(value) as value
+FROM 
+(
+	SELECT
+   	time as day
+	,  value
+ 	FROM metrics_day_by_day 
+ 	ORDER BY 1
+ ) a
+ group by bucket
+ order by bucket desc;
+ ```
+
+ 
