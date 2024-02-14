@@ -6,8 +6,8 @@
 CREATE MATERIALIZED VIEW metrics_min_by_min
 WITH (timescaledb.continuous) as
 SELECT 
-	time_bucket('1 min', created, 'Asia/Seoul') AS "time",
-	date(created at time zone  'Asia/Seoul') as "metric_date",
+	time_bucket('1 min', created ) AS "time",
+	date(created) as "metric_date",
 	type_id,
 	round((last(value, created) - first(value, created)) * 100.) / 100. AS value
 FROM metrics
@@ -26,7 +26,7 @@ SELECT add_continuous_aggregate_policy('metrics_min_by_min',
 ### query
 ```
 select
-	time_bucket('1 min', time,'Asia/Seoul') AS bucket, 
+	time_bucket('1 min') AS bucket, 
 	type_id,
 	sum(value) as value 
 FROM metrics_min_by_min m  
@@ -43,8 +43,8 @@ drop MATERIALIZED VIEW metrics_hour_by_hour;
 
 CREATE MATERIALIZED VIEW metrics_hour_by_hour 
   with (timescaledb.continuous) as
-SELECT time_bucket('01:00:00', m.created, 'Asia/Seoul') AS "time",
-	date(m.created at time zone  'Asia/Seoul') as "metric_date",
+SELECT time_bucket('01:00:00', m.created) AS "time",
+	date(m.created) as "metric_date",
        type_id,
        round((last(value, created) - first(value, created)) * 100.) / 100. AS value
 FROM metrics m
@@ -62,7 +62,7 @@ SELECT add_continuous_aggregate_policy('metrics_hour_by_hour',
 ### query
 ```
 select
-time_bucket('1 day', time,'Asia/Seoul') AS bucket,  
+time_bucket('1 day', time) AS bucket,  
 type_id,
 sum(value) as value 
 FROM metrics_hour_by_hour m 
@@ -79,8 +79,8 @@ drop MATERIALIZED VIEW metrics_day_by_day ;
 CREATE MATERIALIZED VIEW metrics_day_by_day 
 WITH (timescaledb.continuous) as
 SELECT 
-time_bucket('1 day', created, 'Asia/Seoul') AS "time",
-date(m.created at time zone  'Asia/Seoul') as "metric_date",
+time_bucket('1 day', created) AS "time",
+date(m.created ) as "metric_date",
 type_id,
 round((last(value, created) - first(value, created)) * 100.) / 100. AS value
 FROM metrics m
@@ -98,7 +98,7 @@ schedule_interval => INTERVAL '1 hour');
 ### query
 ```
 select
-time_bucket('1 month', time,'Asia/Seoul') AS bucket, 
+time_bucket('1 month', time) AS bucket, 
 type_id,
 sum(value) as value 
 FROM metrics_day_by_day m  
